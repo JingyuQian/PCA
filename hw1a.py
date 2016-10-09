@@ -126,7 +126,7 @@ def plot_top_16(D, sz, imname):
     f,axxr=plt.subplots(4,4)
     for i in range(4):
         for j in range(4):
-            D_comp=D[:,i].reshape((sz,sz))
+            D_comp=D[:,count].reshape((sz,sz))
             D_comp=255*(D_comp-np.min(D_comp))/(np.max(D_comp)-np.min(D_comp))
             D_img=Image.fromarray(D_comp)
             plt.axes(axxr[i,j])
@@ -184,9 +184,9 @@ def main():
             D[:,i]=egvec[:,sz*sz-1-i]
         c = np.dot(D.T, X.T)
 
-#        for i in range(0, 200, 10):
-#            plot_reconstructions(D=D, c=c, num_coeff_array=nc, X_mean=X_mean.reshape((sz, sz)), n_blocks=int(256 / sz),
-#                                 im_num=i)
+        for i in range(0, 200, 10):
+            plot_reconstructions(D=D, c=c, num_coeff_array=nc, X_mean=X_mean.reshape((sz, sz)), n_blocks=int(256 / sz),
+                                 im_num=i)
 
         plot_top_16(D, sz, imname='output/hw1a_top16_{0}.png'.format(sz))
 
